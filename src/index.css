@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+/* Leaflet CSS */
+@import "leaflet/dist/leaflet.css";
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #f1f1f1; }
+::-webkit-scrollbar-thumb { background: #888; border-radius: 2px; }
+
+/* Custom leaflet popup */
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.leaflet-popup-content {
+  margin: 0;
+}
+.leaflet-popup-tip-container { display: none; }
+
+/* Map background when tiles are unavailable */
+.leaflet-container {
+  background: #e8e0d4 !important;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.6) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(255,255,255,0.6) 2px, transparent 2px),
+    linear-gradient(rgba(255,255,255,0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.25) 1px, transparent 1px) !important;
+  background-size: 120px 120px, 120px 120px, 30px 30px, 30px 30px !important;
+}
+
+/* Task bubble marker */
+.task-bubble-marker {
+  background: transparent;
+  border: none;
+}
+.task-bubble {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  transition: transform 0.2s;
+  animation: bubbleFloat 3s ease-in-out infinite;
+}
+.task-bubble:hover { transform: scale(1.1); }
+.task-bubble.basic { background: #fff7ed; color: #c2410c; border: 1.5px solid #fb923c; }
+.task-bubble.skill { background: #eff6ff; color: #1d4ed8; border: 1.5px solid #60a5fa; }
+.task-bubble.blurred { background: rgba(255,255,255,0.6); backdrop-filter: blur(4px); color: #666; border: 1.5px solid #ddd; filter: blur(2px); }
+
+@keyframes bubbleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Full screen map */
+.map-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* Overlay panels */
+.glass-panel {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* Animations */
+.slide-up {
+  animation: slideUp 0.3s ease-out;
+}
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.2s ease-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* AI typing animation */
+.typing-dot {
+  width: 6px; height: 6px;
+  background: #f97316;
+  border-radius: 50%;
+  animation: typingBounce 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.2s; }
+.typing-dot:nth-child(3) { animation-delay: 0.4s; }
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-8px); }
+}
+
+/* Mobile-first */
+html, body, #root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+}
